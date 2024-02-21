@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>First Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body onload="refresh()">
+        <b></b>
+        <table border="" width="80%" bgcolor="lightgray" align="center">
+
+            <caption>
+                Employee Information
+                <input type="button" value="Refresh" onclick="refresh()">
+            </caption>
+            <thead>
+                <tr bgcolor="blue">
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+
+            <tbody id="employeeTableBody">
+
+
+            </tbody>
+        </table>
+
+
+        <form id="empform" >
+
+            name : <input type="text" name="name" value="" /><br><!-- comment -->
+            <!--            age :<input type="text" name="age1" value="" /><br> comment 
+                        reading : <input type="checkbox" name="c1" value="r" /><br>
+                       Male: <input type="radio" name="r1" value="Male" />
+                      Female:  <input type="radio" name="r1" value="Female" /><br>-->
+
+            <!--          <select name="hop">
+                          <option>Reading</option>
+                          <option>Swimming</option>
+                      </select><br>-->
+            <input type="button" value="Register" onclick="submitForm()" />
+
+        </form>
+        <script>
+            function submitForm() {
+                console.log("submitForm() function called");
+                var form = document.getElementById("empform");
+                var formData = new FormData(form);
+                var jsonObject = {};
+
+                // Convert form data to JSON object
+                formData.forEach(function (value, key) {
+                    jsonObject[key] = value;
+                });
+
+                // Convert JSON object to JSON string
+                var jsonData = JSON.stringify(jsonObject);
+
+                // Create new XMLHttpRequest object
+                var xhr = new XMLHttpRequest();
+
+                // Define the endpoint URL
+                var url = "http://localhost:8080/Emp/createEmp";
+
+                // Set up the request
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                // Define what happens on successful data submission
+                xhr.onload = function () {
+                    console.log("Request succeeded:", xhr.responseText);
+                        
+                        form.reset();
+                        refresh();
+//                 setTimeout(refresh(),500);
+                };
+
+                // Define what happens in case of error
+                xhr.onerror = function () {
+                    console.error("Request failed:", xhr.statusText);
+                };
+
+                // Send the request with JSON data
+                xhr.send(jsonData);
+            }
+            function refresh() {
+                console.log("refresh() function called");
+                // Call getFromDB() method to fetch data from the server
+                getFromDB();
+            }
+
+            function getFromDB() {
+                // Create new XMLHttpRequest object
+                var xhr = new XMLHttpRequest();
+
+                // Define the endpoint URL to fetch data from the server
+                var url = "http://localhost:8080/Emp/allEmployees";
+
+                // Set up the request
+                xhr.open("GET", url, true);
+
+                // Define what happens on successful data retrieval
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        // Parse the JSON response
+                        var data = JSON.parse(xhr.responseText);
+
+                        // Get the table body element
+                        var tableBody = document.getElementById("employeeTableBody");
+
+                        // Clear existing table rows
+                        tableBody.innerHTML = "";
+
+                        // Iterate over the data and create table rows dynamically
+                        data.forEach(function (employee) {
+                            var row = document.createElement("tr");
+                            var idCell = document.createElement("td");
+                            idCell.innerText = employee.id;
+                            var nameCell = document.createElement("td");
+                            nameCell.innerText = employee.name;
+                            row.appendChild(idCell);
+                            row.appendChild(nameCell);
+                            tableBody.appendChild(row);
+                        });
+                    } else {
+                        console.error("Request failed:", xhr.statusText);
+                    }
+                };
+
+                // Define what happens in case of error
+                xhr.onerror = function () {
+                    console.error("Request failed:", xhr.statusText);
+                };
+
+                // Send the request to fetch data from the server
+                xhr.send();
+            }
+        </script>
+
+    </body>
+
+</html>

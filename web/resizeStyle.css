@@ -1,0 +1,43 @@
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.resizable-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 200px; /* Set a minimum width for the table */
+}
+
+.resizable-table th, .resizable-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Add styles for resizable functionality */
+.resizable-table th {
+  position: relative;
+  overflow: hidden;
+}
+
+.resizable-table th::after {
+    
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -5px; /* Adjust the width of the resizing handle */
+  bottom: 0;
+  width: 10px; /* Width of the resizing handle */
+  cursor: col-resize;
+  background-color: transparent;
+}
+
+/* Optionally, style the resizing handle */
+.resizable-table th::after {
+  content: "\2195"; /* Unicode for a vertical line */
+  font-size: 12px;
+  color: #aaa;
+  text-align: center;
+  line-height: 1;
+}
