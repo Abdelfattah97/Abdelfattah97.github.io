@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='/web/fonts/spacia-font-sheet.css' rel='spacia-font'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
     <title>Abdelfattah Ahmed</title>
     <style>
         body {
@@ -16,26 +18,74 @@
             background-color: #f0f0f0;
         }
         .title {
+            font-family: 'Spacia',Sans-Serif;
             font-size: 2.5em;
-            font-weight: bold;
+            #font-weight: bold;
             text-align: center;
             color: #333;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 30px;
         }
+
         .link {
-            font-size: 1.2em;
-            color: #007bff;
             text-decoration: none;
+            font-size: 0.84em;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+         .nav-head {
+           align-content:bottom;
+            font-size: 2em;
+            opacity:10%;
+            font-family:Raleway;
+            font-weight:bold;
+            color: #fff;
+            text-decoration: none;
+            position:absolute;
+            top:50%;
+            bottom:50%;
+            margin-left:8%;
+            margin-top:-1.5%;
         }
         .link:hover {
-            text-decoration: underline;
+            #text-decoration: underline;
+        }
+        .topnav{
+          background: rgb(6,5,85);
+background:linear-gradient(151deg,
+ rgba(6,5,85,1) 20%,
+ rgba(9,9,121,1) 45%,
+  rgba(0,122,147,1) 74%);
+    text-align:center;
+    position:fixed;
+    top:0px;
+    height:15%;
+    min-height:50px;
+    z-index:9999;
+    width:100%;
+    # max-width: 850px;
+    margin: 0 auto; left:0px; right:0px;
+    float:clear;
+    justify-content:flex-start:
         }
     </style>
 </head>
 <body>
-<div class="title">Abdelfattah Ahmed</div>
-<div class="link"><a href="web/date-calculator.html">Go to Date Calculator</a></div>
+<div class="topWrapper" >
+<nav id="topnav" class="topnav">
+    <li>
+        <div class="nav-head">A Wide World to be built</div>
+    </li>
+</nav>
+
+<!--        <hr>-->
+</div>
+<div>
+
+    <div class="title">Abdelfattah Ahmed</div>
+<hr>
+    <div class="link"><a href="web/date-calculator.html">Annual Leave Calculator</a></div>
+</div>
 </body>
 </html>
