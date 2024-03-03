@@ -1,0 +1,149 @@
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Date Calculation</title>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h2>Date Calculation</h2>-->
+<!--<label for="vacEnd">Vacation End Date:</label>-->
+<!--<input type="date" id="vacEnd" name="vacEnd"  max="3000-01-01" value="2024-03-23"><br><br>-->
+
+<!--<label for="Iqama">Iqama Date:</label>-->
+<!--<input type="date" id="Iqama" name="Iqama" max="3000-01-01" value="2022-08-15"><br><br>-->
+
+<!--<label for="workLic">Work License Date:</label>-->
+<!--<input type="date" id="workLic" name="workLic" max="3000-01-01" value="2022-05-17" ><br><br>-->
+
+<!--<button onclick="calculateDates()">Calculate Dates</button><br><br>-->
+
+<!--<div id="result"></div>-->
+
+<!--<script>-->
+<!--    function calculateDates() {-->
+<!--      let vacEndStr = document.getElementById("vacEnd").value;-->
+<!--      let IqamaStr = document.getElementById("Iqama").value;-->
+<!--      let workLicStr = document.getElementById("workLic").value;-->
+
+<!--      let vacationEnd = moment(vacEndStr);-->
+<!--      let IqamaActual = moment(IqamaStr);-->
+<!--      let wLicActual = moment(workLicStr);-->
+
+<!--      let IqamaPrdct = vacationEnd.clone().add(90, 'days');-->
+<!--      let IqamaRenew = getMinRenewMonths(3, IqamaActual, IqamaPrdct);-->
+<!--      let IqamaValid = IqamaActual.clone().add(IqamaRenew, 'months');-->
+
+<!--      let wLicRenew = getMinRenewMonths(3, wLicActual, IqamaValid);-->
+<!--      let wLicValid = wLicActual.clone().add(wLicRenew, 'months');-->
+
+<!--      document.getElementById("result").innerHTML = "Iqama Valid Until: " + IqamaValid.format('YYYY-MM-DD') + "<br>";-->
+<!--      document.getElementById("result").innerHTML += "Iqama Renewal Months: " + IqamaRenew + "<br>";-->
+<!--      document.getElementById("result").innerHTML += "Work License Valid Until: " + wLicValid.format('YYYY-MM-DD') + "<br>";-->
+<!--      document.getElementById("result").innerHTML += "Work License Renewal Months: " + wLicRenew + "<br>";-->
+<!--    }-->
+
+<!--    function getMinRenewMonths(interval, actualDate, minDate) {-->
+<!--      if (minDate.diff(actualDate) > 0) {-->
+<!--        let months = minDate.diff(actualDate, 'months');-->
+<!--        let mOffset = months % interval !== 0 ? interval - (months % interval) : 0;-->
+<!--        return months + mOffset;-->
+<!--      }-->
+<!--      return 0;-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Calculation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</head>
+<body>
+<h2>Date Calculation</h2>
+<label for="vacEnd">Vacation End Date:</label>
+<input type="date" id="vacEnd" name="vacEnd" max="3000-01-01" value="2024-04-23"><br><br>
+
+<label for="Iqama">Iqama Date:</label>
+<input type="date" id="Iqama" name="Iqama" max="3000-01-01" value="2023-01-23"><br><br>
+
+<label for="workLic">Work License Date:</label>
+<input type="date" id="workLic" name="workLic" max="3000-01-01" value="2024-07-07"><br><br>
+
+<button onclick="calculateDates()">Calculate Dates</button><br><br>
+
+<div id="result"></div>
+
+<script>
+    function calculateDates() {
+      let vacEndStr = document.getElementById("vacEnd").value;
+      let IqamaStr = document.getElementById("Iqama").value;
+      let workLicStr = document.getElementById("workLic").value;
+
+      let vacationEnd = moment(vacEndStr);
+      let IqamaActual = moment(IqamaStr);
+      let wLicActual = moment(workLicStr);
+
+      let IqamaPrdct = vacationEnd.clone().add(91, 'days');
+      let IqamaRenew = getMinRenewMonths(3, IqamaActual, IqamaPrdct);
+      let IqamaValid = IqamaActual.clone().add(IqamaRenew, 'months');
+      var Iqama = IqamaValid.clone();
+      let wLicRenew = getMinRenewMonths(3, wLicActual, Iqama);
+      let wLicValid = wLicActual.clone().add(wLicRenew, 'months');
+
+      document.getElementById("result").innerHTML = "Iqama Valid Until: " + IqamaValid.format('YYYY-MM-DD') + "<br>";
+      document.getElementById("result").innerHTML += "Iqama Renewal Months: " + IqamaRenew + "<br>";
+      document.getElementById("result").innerHTML += "Work License Valid Until: " + wLicValid.format('YYYY-MM-DD') + "<br>";
+      document.getElementById("result").innerHTML += "Work License Renewal Months: " + wLicRenew + "<br>";
+    }
+ function getMinRenewMonths(interval, actualDate, minDate) {
+  if (minDate.diff(actualDate) > 0) {
+    let actualYear = actualDate.year();
+    let actualMonth = actualDate.month();
+    let actualDay = actualDate.date();
+
+    let minYear = minDate.year();
+    let minMonth = minDate.month();
+    let minDay = minDate.date();
+
+    let months = (minYear - actualYear) * 12 + (minMonth - actualMonth);
+
+    // Adjust months if minDate's day is greater than actualDate's day
+    if (minDay > actualDay) {
+      months += 1;
+    }
+
+    // Adjust months if minDate's day is less than actualDate's day
+    else if (minDay < actualDay) {
+      months -= 1;
+    }
+
+    let mOffset = months % interval !== 0 ? interval - (months % interval) : 0;
+    return months + mOffset;
+  }
+  return 0;
+}
+//    function getMinRenewMonths(interval, actualDate, minDate) {
+//      if (minDate.diff(actualDate) > 0) {
+//          console.error(minDate.format("yyyy-MM-DD"));
+//          console.error(actualDate.format("yyyy-MM-DD"));
+//          console.error(minDate>actualDate);
+//        let months = minDate.diff(actualDate, 'months');
+//        console.error(months);
+//        let mOffset = months % interval !== 0 ? interval - (months % interval) : 0;
+//        return months + mOffset;
+//      }
+//      return 0;
+//    }
+</script>
+</body>
+</html>
