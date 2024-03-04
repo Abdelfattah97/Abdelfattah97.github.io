@@ -59,8 +59,8 @@
 <script>
     function calculateGoldPrice() {
         var goldPrice = parseFloat(document.getElementById('goldPrice').value);
-        var result = goldPrice / 8.294;
-        document.getElementById('result').innerHTML = "Price per gram: $" + result.toFixed(2);
+        var result = (goldPrice / 8.294)
+        document.getElementById('result').innerHTML = "Price per gram: " + result.toFixed(2) + " Saudi Riyal";
     }
 </script>
 
