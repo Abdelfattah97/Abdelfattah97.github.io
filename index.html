@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='/web/fonts/spacia-font-sheet.css' rel='SpaciaSheet'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+<!--    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>-->
+<!--    <link href='/web/fonts/spacia-font-sheet.css' rel='SpaciaSheet'>-->
+    <link href='web/fonts/carry-you-regular.css' rel='carry-you-style'>
     <title>Abdelfattah Ahmed</title>
     <style>
         body {
@@ -30,8 +31,9 @@
         }
 
         .link {
+            font-family:Sans-Serif;
             text-decoration: none;
-            font-size: 0.84em;
+            font-size: 0.86rem;
             text-decoration: none;
             transition: background-color 0.3s, color 0.3s;
         }
@@ -49,6 +51,11 @@
             bottom:50%;
            # margin-left:8%;
             margin-top:0.5%;
+        }
+        .menu-title{
+        font-family:carry-you-regular;
+        text-decoration:underline;
+        #font-family:brex;
         }
         .link:hover {
             #text-decoration: underline;
@@ -73,22 +80,29 @@ background:linear-gradient(151deg,
   justify-content: center; /* Aligns items horizontally */
   align-items: center;
         }
+
     </style>
 </head>
 <body>
-<div class="topWrapper" >
-<nav id="topnav" class="topnav">
+<div class="topWrapper">
+    <nav id="topnav" class="topnav">
         <div class="nav-head">A Wide World to be built</div>
-</nav>
+    </nav>
 
-<!--        <hr>-->
+    <!--        <hr>-->
 </div>
 <div>
-
-    <div class="title">Abdelfattah Ahmed</div>
-<hr>
-    <div class="link"><a href="web/date-calculator.html">Annual Leave Calculator</a></div>
-    <div class="link"><a href="web/world-gold-price.html">GoldPrice</a></div>
+    <div>
+        <div class="title">Abdelfattah Ahmed</div>
+    </div>
+    <div>
+        <hr>
+            <h4 class="menu-title" >Projects</h4>
+        <menu>
+            <li class="link"><a href="web/date-calculator.html">Annual Leave Calculator</a></li>
+            <li class="link"><a href="web/world-gold-price.html">GoldPrice</a></li>
+        </menu>
+    </div>
 </div>
 </body>
 </html>
