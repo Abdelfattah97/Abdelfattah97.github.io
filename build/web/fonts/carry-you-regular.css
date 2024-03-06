@@ -3,9 +3,9 @@
 
 
 @font-face {
-    font-family: 'carry-you-regular';
-    src: url('web/fonts/carryyouregular-3z71m-webfont.woff2') format('woff2'),
-         url('web/fonts/carryyouregular-3z71m-webfont.woff') format('woff');
+    font-family: carry-you-regular;
+    src: url('carryyouregular-3z71m-webfont.woff2') format('woff2'),
+         url('carryyouregular-3z71m-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
